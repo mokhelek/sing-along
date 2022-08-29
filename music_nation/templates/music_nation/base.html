@@ -1,0 +1,52 @@
+{% load static %}
+<html>
+  <head>
+    <title>{%block title%}MusicNation{%endblock%}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'music_nation/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'music_nation/css/music_nation.css' %}">
+  </head>
+  <body style="background-color:skyblue">
+    <div >
+      <header>
+        <nav>
+          <ul class="bglight" style="background-color:darkblue">
+            <li class="li-left">
+              <a class="base-a-img" href="{% url 'music_nation:home' %}">
+                <img src="{%static 'music_nation/img/music-streaming.png' %}" style="width:50px;" alt="logo">
+              </a>
+            </li>
+             <li class="li-left" style="color:white">
+              <h2 class="base-a">Music Streaming Application</h2>
+            </li>
+            {% if user.is_authenticated %}
+
+            <li class="li-right">
+              <a class="base-a" href="{% url 'users:logout' %}"><h2>Logout</h2></a>
+            </li>
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:add_album' user %}"><h2>Add Album</h2></a>
+            </li>
+            <li class="li-right">
+              <a class="base-a" href="{% url 'music_nation:profile_detail' user %}"><h2>{{ user.username }}</h2></a>
+            </li>
+            {% else %}
+            <li class="li-right">
+              <a class="base-a" href="{% url 'users:login' %}"><h2>Login</h2></a>
+            </li>
+            <li class="li-right">
+              <a class="base-a" href="{% url 'users:signup' %}"><h2>Sign Up</h2></a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <div>
+      {%block content%}
+      {%endblock%}
+    </div>
+
+  </body>
+</html>

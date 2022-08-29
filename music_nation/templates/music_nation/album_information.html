@@ -1,0 +1,23 @@
+{% extends 'music_nation/base.html' %}
+
+{%block title%}
+{%endblock%}
+{%block content%}
+  <ul class="album-list">
+    <h2>{{ album.album_name }}</h2>
+    {% if album.album_artist == user %}
+    <a href="{% url 'music_nation:delete_album' username album %}">Delete</a>/
+    <a href="{% url 'music_nation:add_song' username album %}">Add new song</a>
+    {% endif %}
+
+
+    {% for song in songs %}
+      <li >
+        {{song.song_name}}<br/>
+        <audio controls>
+          <source src="{{ song.song_file.url }}" type="audio/mp3">
+        </audio>
+      </li><hr/>
+    {% endfor %}
+  </ul>
+{%endblock%}

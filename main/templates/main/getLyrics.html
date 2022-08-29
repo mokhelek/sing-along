@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+{% block content %}
+<div class="container">
+    <br>
+    <h2>Get Lyrics</h2>
+    <br>
+    <p>
+        <h4>
+            {{lyrics.message.body.lyrics.lyrics_body}}
+        </h4>
+    </p>
+</div>
+{% endblock content %}
+

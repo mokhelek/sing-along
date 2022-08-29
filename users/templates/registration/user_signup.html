@@ -1,0 +1,17 @@
+
+{% if user.is_authenticated %}
+<h3><strong>You will have to logout and sign in as a new user</strong></h3>
+<small>Do you want to <a href="{% url 'music_nation:logout' %}"><strong>LogOut</strong></a></small>
+
+{% else %}
+      {% if message %}
+              <li style="list-style-type:none;"><h3><strong>{{ message }}</strong></h3></li>
+      {% endif %}
+  <h2>SignUp</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary" style="background-color:green">SignUp</button>
+  </form>
+{% endif %}
+
